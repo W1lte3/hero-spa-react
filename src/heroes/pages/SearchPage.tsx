@@ -12,17 +12,16 @@ export const SearchPage = () => {
 
   const {q = ''} = queryString.parse(location.search);
   const heroes: Hero[] = getHeroesByName(q as string);
-  console.log(heroes);
 
-  const { searchText, onInputChange } = useForm({
-    searchText: q
+  const { formState, onInputChange } = useForm({
+    searchText: q as string
   });
 
   const onSearchSubmit = (event: React.FormEvent<HTMLFormElement> ) => {
     event.preventDefault();
-    if ( searchText.trim().length <= 1) return;
+    if ( formState.searchText.trim().length <= 1) return;
 
-    navigate(`?q=${searchText.toLowerCase().trim()}`);
+    navigate(`?q=${formState.searchText.toLowerCase().trim()}`);
   }
 
   return (
@@ -41,7 +40,7 @@ export const SearchPage = () => {
               className="form-control"
               name="searchText"
               autoComplete="off"
-              value={ searchText }
+              value={ formState.searchText }
               onChange={ onInputChange }
             />
 
