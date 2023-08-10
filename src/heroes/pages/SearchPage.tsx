@@ -1,7 +1,7 @@
 import { HeroCard } from "../components";
 
 export const SearchPage = () => {
-  return (
+  return ( 
     <>
       <h1>Search</h1>
       <hr />
